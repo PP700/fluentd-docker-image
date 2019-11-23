@@ -21,7 +21,9 @@ RUN apt-get update \
  && gem install oj -v 3.3.10 \
  && gem install json -v 2.2.0 \
  && gem install async-http -v 0.46.3 \
- && gem install fluentd -v 1.7.4 \
+ && gem install fluentd -v 1.8.0.rc2 \
+ && fluent-gem install fluent-plugin-sql --no-document \
+ && fluent-gem install pg -v 0.21.0 --no-document \
  && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
  && wget -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/v$TINI_VERSION/tini-$dpkgArch" \
  && wget -O /usr/local/bin/tini.asc "https://github.com/krallin/tini/releases/download/v$TINI_VERSION/tini-$dpkgArch.asc" \
